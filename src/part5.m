@@ -56,6 +56,7 @@ set(h, 'AlphaData', mat2gray(heatmapStatic) * 0.7);
 colormap hot; colorbar;
 title('Static Occupancy Heatmap (all frames)', 'FontSize', 13);
 hold off;
+saveas(gcf, '../results/part5_static_heatmap.png');
 fprintf('Static heatmap done.\n');
 
 

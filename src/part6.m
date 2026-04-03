@@ -48,6 +48,7 @@ gmm = fitgmdist(allCentroids, nComponents, ...
     'Options', statset('MaxIter', 500));
 fprintf('GMM fitted.\n');
 
+diary('../results/part6_gmm_stats.txt');
 fprintf('\n--- GMM Statistical Summary ---\n');
 for c = 1 : nComponents
     mu    = gmm.mu(c,:);
@@ -59,6 +60,7 @@ for c = 1 : nComponents
     fprintf('  Std dev: sx=%.1f, sy=%.1f\n', sqrt(sigma(1,1)), sqrt(sigma(2,2)));
 end
 fprintf('--------------------------------\n\n');
+diary off;
 
 % plot 1: scatter of all centroids + gmm ellipses
 figure('Name', 'Part 6 - GMM Components', 'NumberTitle', 'off');
@@ -82,6 +84,7 @@ for c = 1 : nComponents
         'Color', colors(c,:), 'FontSize', 9, 'FontWeight', 'bold');
 end
 hold off;
+saveas(gcf, '../results/part6_gmm_ellipses.png');
 
 % plot 2: density map from gmm
 fprintf('Computing density map...\n');
@@ -102,6 +105,7 @@ set(h, 'AlphaData', densityMap * 0.8);
 colormap hot; colorbar;
 title('GMM Density Map (EM)', 'FontSize', 13);
 hold off;
+saveas(gcf, '../results/part6_gmm_density.png');
 
 fprintf('Done! Part 6 complete.\n');
 

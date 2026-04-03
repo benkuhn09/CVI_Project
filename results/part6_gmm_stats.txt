@@ -1,0 +1,28 @@
+
+--- GMM Statistical Summary ---
+Component 1:
+  Weight (mixing proportion): 0.084
+  Mean position: x=619.9, y=161.6
+  Std dev: sx=32.6, sy=15.2
+Component 2:
+  Weight (mixing proportion): 0.115
+  Mean position: x=639.2, y=280.2
+  Std dev: sx=18.3, sy=51.3
+Component 3:
+  Weight (mixing proportion): 0.152
+  Mean position: x=220.8, y=199.2
+  Std dev: sx=67.1, sy=14.3
+Component 4:
+  Weight (mixing proportion): 0.202
+  Mean position: x=528.6, y=264.2
+  Std dev: sx=69.3, sy=39.7
+Component 5:
+  Weight (mixing proportion): 0.410
+  Mean position: x=403.2, y=217.7
+  Std dev: sx=98.3, sy=25.0
+Component 6:
+  Weight (mixing proportion): 0.038
+  Mean position: x=258.8, y=422.8
+  Std dev: sx=78.2, sy=35.7
+--------------------------------
+
