@@ -58,11 +58,21 @@ Two outputs:
 Printed stats per component: mixing proportion (how much of total activity), mean position (x, y in pixels), and standard deviation in x and y
 
 ### Part 7 — Evaluation Performance of Algorithm
+Compares our detector (`det.txt`) against ground truth (`gt.txt`) using IoU-based matching. For each frame, a greedy matching algorithm pairs detected boxes to GT boxes by highest IoU first. A match is valid if IoU ≥ 0.5.
+
+Outputs:
+- **Success Plot** - bar chart showing the distribution of best detection overlap per frame across all frames
+- **FP/FN Percentages** - false negatives and false positives printed to terminal as percentages of total GT and total detections, respectively
+- **Example Frames** - up to 3 frames visualised with TP (green), FN (red) and FP (magenta) boxes labelled
 
 ### Part 8 — Deep Neural Network Comparison
+Runs YOLOv26n pretrained on COCO against the same View001 sequence and compares its detections to both our background and subtraction detector and the ground truth. YOLO filters to person class only (ID 0) at a confidence level of 0.5. Implemented in a Python notebook using the ultralytics library. Outputs side-by-side frame comparisons with GT (green), YOLO (blue), and our detector (red) overlaid.
+
 
 ---
 
 ## Requirements
 
 MATLAB with Image Processing Toolbox and Statistics and Machine Learning Toolbox (required for `fitgmdist` in Part 6).
+
+Part 8 requires Python with `ultralytics`, `opencv-python`, and `matplotlib`.
