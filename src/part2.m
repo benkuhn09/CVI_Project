@@ -5,6 +5,7 @@
 %          (Object-detection.m, Brain_tissue_detection.m)
 %  step 3: bwlabel & regionprops & bounding boxes (Coins_Detection.m, 
 %          Object-detection.m)
+%  step 4: generate ground truth detections file
  
 clear all, close all
  
@@ -22,6 +23,8 @@ seSize      = 3;
 nBkgFrames  = 100;     % # frames used for bkgd est
 bkgStep     = 5;       % sample step size when building bkgd
  
+% ground truth output file
+detOutputFile = '../data/our_detections.txt';
 
 % step 1
 fprintf('Estimating background from %d frames...\n', nBkgFrames);
@@ -42,6 +45,9 @@ fprintf('Background estimated.\n');
 % steps 2 & 3
 se = strel('disk', seSize); 
  
+% Initialize ground truth storage
+ourDetections = []; % format: [frame, id, bb_left, bb_top, bb_width, bb_height, conf, x, y, z]
+
 figure('Name', 'Part 2 - Detector Output', 'NumberTitle', 'off');
  
 for f = 1 : nFrames
@@ -77,6 +83,9 @@ for f = 1 : nFrames
         cx = regionProps(inds(j)).Centroid(1);
         cy = regionProps(inds(j)).Centroid(2);
  
+        % Store detection in ground truth format: [frame, id, left, top, width, height, conf, x, y, z]
+        ourDetections = [ourDetections; f, j, bb(1), bb(2), bb(3), bb(4), 1.0, cx, cy, 0];
+
         % drawing bb
         rectangle('Position', bb, 'EdgeColor', [1 1 0], 'LineWidth', 2);
  
@@ -91,6 +100,12 @@ for f = 1 : nFrames
  
     drawnow;
     hold off;
-    pause(pauseTime);
+    %pause(pauseTime);
 end
- 
+
+% Save our detections to file
+fprintf('\nSaving our detector results to: %s\n', detOutputFile);
+dlmwrite(detOutputFile, ourDetections, 'delimiter', ',');
+fprintf('Saved %d total detections across %d frames\n', size(ourDetections, 1), nFrames);
+
+fprintf('\nPart 2 complete. Ground truth generated for evaluation in Part 7.\n');
