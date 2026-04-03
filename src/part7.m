@@ -103,15 +103,13 @@ for f = 1:nFrames
 end
 
 %% Compute percentages and display
-fnPercent = (totalFN / totalGT) * 100;
-fpPercent = (totalFP / totalDet) * 100;
 
 fprintf('=== Evaluation Results (match IoU >= %.2f) ===\n', matchThresh);
 fprintf('Total ground truth objects : %d\n', totalGT);
 fprintf('Total detections           : %d\n', totalDet);
 fprintf('True Positives             : %d\n', totalTP);
-fprintf('False Negatives (missed)   : %d (%.2f%%)\n', totalFN, fnPercent);
-fprintf('False Positives (spurious) : %d (%.2f%%)\n', totalFP, fpPercent);
+fprintf('False Negatives (missed)   : %d\n', totalFN);
+fprintf('False Positives (spurious) : %d\n', totalFP);
 
 %% Success plot (percentage of GT objects with max IoU >= threshold)
 binEdges = 0:0.05:1;
